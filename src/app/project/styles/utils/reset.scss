@@ -1,0 +1,30 @@
+html, body, .main-view{
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  color: $primary-text-color;
+  background-color: $secondary-color;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  overflow: hidden;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+p {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+
+
+:focus {
+  outline: 0 none !important;
+}
+
+label {
+  font-weight: 300;
+}

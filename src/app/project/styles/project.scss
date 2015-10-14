@@ -1,0 +1,31 @@
+.main-view {
+  background-color: $secondary-color;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 275px;
+  right: 0;
+  overflow: auto;
+  height: 1px;
+  min-height: 100%;
+}
+
+@media screen and (max-width: 640px) {
+  .main-view {
+    top: 40px;
+    left: 0;
+  }
+}
+
+a {
+  cursor: pointer;
+  color: $secondary-text-color;
+}
+
+a.success {
+  color: $success-text-color;
+}
+
+a.danger {
+  color: $btn-danger;
+}
