@@ -13,7 +13,7 @@ angular.module 'iBuy'
     # =============================================
     # UserLoginInterceptor
     # =============================================
-    $provide.factory 'UserLoginInterceptor', [ '$q', '$injector', '$rootScope', ($q, $injector, $rootScope) ->
+    $provide.factory 'UserLoginInterceptor', [ '$q', '$injector', '$rootScope', 'APP_ENV', ($q, $injector, $rootScope, APP_ENV) ->
 
       'request': (config) ->
         return config

@@ -9,7 +9,6 @@ angular.module "iBuy.vendors", [
   "ngAnalytics"
   "ngToast"
   "angular-loading-bar"
-  "agGrid"
 ]
 
 # =============================================

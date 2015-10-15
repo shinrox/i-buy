@@ -27,9 +27,6 @@ options.modulesData = {
       '/environment'     : 'builds/dev/serve/app/project/scripts/environment'
     },
     isEnabled: true
-  },
-  proxy: {
-    target: 'http://docker:49000'
   }
 }
 
