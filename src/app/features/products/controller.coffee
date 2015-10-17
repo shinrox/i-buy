@@ -8,5 +8,8 @@ angular.module 'iBuy'
       return alphanumSort(a.name, b.name)
   }
 
+  # for product in ctrl.products
+  #   Service.remove product._id
+
 
   return @

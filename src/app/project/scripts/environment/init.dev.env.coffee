@@ -21,11 +21,10 @@ $(document).ready ->
     #       "preview": "http://lorempixel.com/640/480/technics/#{index}",
     #       "quantity": Math.floor(Math.random() * 30) + 10,
     #       "type": "tech"
-    #       "name": "Product #{index}"
+    #       "name": "Produto #{index}"
     #     }
 
     #     $.post("https://openws.herokuapp.com/products?apiKey=#{ENV.APIKEY}", product).done (data)->
-    #       console.log data
     #       if index is 10
     #         angular.bootstrap(document, ["iBuy"])
     angular.bootstrap(document, ["iBuy"])

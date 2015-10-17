@@ -14,23 +14,23 @@
   }
 
   button.cancel {
-    background-color: $btn-sa-cancel;
+    background-color: map-get($btn-colors, sacancel);
   }
 
   button.confirm {
-    background-color: $btn-danger !important;
+    background-color: map-get($btn-colors, danger) !important;
   }
 
 }
 
 .sweet-alert.confirm-secondary {
   button.confirm {
-    background-color: $btn-secondary !important;
+    background-color: map-get($btn-colors, secondary) !important;
   }
 }
 
 .sweet-alert.confirm-danger {
   button.confirm {
-    background-color: $btn-danger !important;
+    background-color: map-get($btn-colors, danger) !important;
   }
 }

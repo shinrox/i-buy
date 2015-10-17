@@ -24,7 +24,7 @@
 
   .ui-select-toggle {
     color: #FFFFFF;
-    background: $btn-secondary;
+    background: map-get($btn-colors, secondary);
   }
 
   .ui-select-choices {

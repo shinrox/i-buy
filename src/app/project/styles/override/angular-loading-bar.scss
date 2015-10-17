@@ -1,7 +1,7 @@
 
 /* ============== Loading bar ============ */
-$primaryLoadingColor   : $light-panel-color;
-$secondaryLoadingColor : $primary-color;
+$primaryLoadingColor   : map-get($colors, secondary);
+$secondaryLoadingColor : map-get($colors, primary);
 
 
 

@@ -30,8 +30,8 @@ input, .input-group-addon {
 }
 
 .btn-primary, .btn-primary[disabled] {
-  background-color: $btn-primary;
-  border-color: darken( $btn-primary, 5% );
+  background-color: map-get($btn-colors, primary);
+  border-color: darken( map-get($btn-colors, primary), 5% );
   color: #ffffff;
 
 }
@@ -44,19 +44,19 @@ input, .input-group-addon {
 .btn-primary[disabled]:focus,
 .btn-primary[disabled]:active,
 .btn-primary[disabled].active {
-  background-color: darken( $btn-primary, 5% );
-  border-color: darken( $btn-primary, 5% );
+  background-color: darken( map-get($btn-colors, primary), 5% );
+  border-color: darken( map-get($btn-colors, primary), 5% );
   color: #ffffff;
 }
 
 .btn-primary:active, .btn-primary.active, .btn-primary:active:hover, .btn-primary:active:not(:hover) {
-  background-color: darken( $btn-primary, 10% );
+  background-color: darken( map-get($btn-colors, primary), 10% );
   box-shadow: none;
 }
 
 .btn-secondary {
-  background-color: $btn-secondary;
-  border-color: darken( $btn-secondary, 5% );
+  background-color: map-get($btn-colors, secondary);
+  border-color: darken( map-get($btn-colors, secondary), 5% );
   color: #ffffff;
 }
 
@@ -69,19 +69,19 @@ input, .input-group-addon {
 .btn-secondary[disabled]:focus,
 .btn-secondary[disabled]:active,
 .btn-secondary[disabled].active {
-  background-color: darken( $btn-secondary, 5% );
-  border-color: darken( $btn-secondary, 5% );
+  background-color: darken( map-get($btn-colors, secondary), 5% );
+  border-color: darken( map-get($btn-colors, secondary), 5% );
   color: #ffffff;
 }
 
 .btn-secondary:active, .btn-secondary.active, .btn-secondary:active:hover, .btn-secondary:active:not(:hover){
-  background-color: darken( $btn-secondary, 10% );
+  background-color: darken( map-get($btn-colors, secondary), 10% );
   box-shadow: none;
 }
 
 .btn-danger {
-  background-color: $btn-danger;
-  border-color: darken( $btn-danger, 5% );
+  background-color: map-get($btn-colors, danger);
+  border-color: darken( map-get($btn-colors, danger), 5% );
   color: #ffffff;
 }
 
@@ -94,13 +94,13 @@ input, .input-group-addon {
 .btn-danger[disabled]:focus,
 .btn-danger[disabled]:active,
 .btn-danger[disabled].active {
-  background-color: darken( $btn-danger, 5% );
-  border-color: darken( $btn-danger, 5% );
+  background-color: darken( map-get($btn-colors, danger), 5% );
+  border-color: darken( map-get($btn-colors, danger), 5% );
   color: #ffffff;
 }
 
 .btn-danger:active, .btn-danger.active, .btn-danger:active:hover, .btn-danger:active:not(:hover){
-  background-color: darken( $btn-danger, 10% );
+  background-color: darken( map-get($btn-colors, danger), 10% );
   box-shadow: none;
 }
 
@@ -165,6 +165,6 @@ input, .input-group-addon {
 
 .btn-default{
   filter: none !important;
-  color: $mid-text-color;
+  color: map-get($text-colors, mid);
 }
 

@@ -5,7 +5,7 @@
   "dependencies": {
     "angular": "1.4.7",
     "angular-animate": "1.4.6",
-    "angular-bootstrap": "0.13.4",
+    "angular-bootstrap": "0.14.2",
     "angular-loading-bar": "0.7.1",
     "angular-media-queries": "0.4.1",
     "angular-mocks": "1.4.6",

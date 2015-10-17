@@ -1,31 +1,9 @@
 .main-view {
-  background-color: $secondary-color;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 275px;
-  right: 0;
-  overflow: auto;
+  background-color: map-get($colors, secondary);
   height: 1px;
-  min-height: 100%;
+  min-height: 200%;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 120px;
 }
 
-@media screen and (max-width: 640px) {
-  .main-view {
-    top: 40px;
-    left: 0;
-  }
-}
-
-a {
-  cursor: pointer;
-  color: $secondary-text-color;
-}
-
-a.success {
-  color: $success-text-color;
-}
-
-a.danger {
-  color: $btn-danger;
-}
