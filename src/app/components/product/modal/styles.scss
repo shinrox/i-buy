@@ -1,0 +1,15 @@
+.modal-header, .modal-header a {
+  color: map-get($text-colors, main);
+}
+
+.product-modal {
+  .preview {
+    width: 100%;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+}

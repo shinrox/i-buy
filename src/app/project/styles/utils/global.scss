@@ -19,3 +19,7 @@ label:first-letter{
   text-transform: capitalize;
 }
 
+.overflow {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}

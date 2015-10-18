@@ -1,20 +1,20 @@
 #header {
-  width:100%;
   background-color: map-get($colors, primary);
   position:fixed;
   top:0;
   left:0;
+  width:100%;
   -webkit-transition:0.5s linear all;
   -moz-transition:0.5s linear all;
   -o-transition:0.5s linear all;
   transition:0.5s linear all;
 
   &.big {
-    height:100px;   
+    height:85px;   
   }
 
   &.small {
-   height:40px;
+    height:40px;
   }
 
 }

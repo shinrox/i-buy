@@ -5,8 +5,8 @@ angular.module "iBuy.controllers"
   ###
 
   $document.on 'scroll', ()->
-    ctrl.headerClass = if $document.scrollTop() < 50 then 'big' else 'small'
-
+    ctrl.headerClass = if $document.scrollTop() > 30 then 'small' else 'big'
+    $scope.$apply()
 
   ctrl = @
 
