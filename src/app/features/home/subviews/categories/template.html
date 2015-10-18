@@ -2,7 +2,10 @@
   <ul>
     <li ng-repeat="category in ctrl.categories">
       <div>
-        <img ng-src="/assets/images/{{category.image}}" alt="category.name">
+        <img 
+          ng-src="/assets/images/{{category.image}}" 
+          alt="category.name"
+          ui-sref='products'>
       </div>
     </li>
   </ul>

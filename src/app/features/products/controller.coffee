@@ -1,5 +1,5 @@
 angular.module 'iBuy'
-.controller 'ProductsController', (products, alphanumSort, ProductsService)->
+.controller 'ProductsController', (products, alphanumSort, ProductsService, CartService)->
   ctrl = @
   Service = ProductsService
 
@@ -10,6 +10,10 @@ angular.module 'iBuy'
 
   # for product in ctrl.products
   #   Service.remove product._id
+  
+  
 
+  ctrl.addToCart = (product, quantity)->
+    CartService.add(product, quantity)
 
   return @

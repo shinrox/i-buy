@@ -1,5 +1,5 @@
 angular.module "iBuy.controllers"
-.controller "NavBarCtrl", ($rootScope, $element, $scope, $state, $document) ->
+.controller "NavBarCtrl", ($rootScope, $element, $scope, $state, $document, CartService) ->
   ###
   ## Init
   ###
@@ -10,7 +10,9 @@ angular.module "iBuy.controllers"
 
   ctrl = @
 
-  ctrl.headerClass = 'big'
+  ctrl.headerClass = if $document.scrollTop() > 30 then 'small' else 'big'
+
+  ctrl.Cart = CartService
 
   return @
 
