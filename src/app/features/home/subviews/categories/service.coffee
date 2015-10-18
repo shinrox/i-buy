@@ -1,7 +1,7 @@
 angular.module 'iBuy.services'
-.service 'ProductsService', ($http, APP_ENV)->
+.service 'CategoriesService', ($http, APP_ENV)->
 
-  basePath = "#{APP_ENV.API_BASE_URL}products"
+  basePath = "#{APP_ENV.API_BASE_URL}categories"
 
   return service =
     all: ()->

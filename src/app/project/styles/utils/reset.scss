@@ -18,12 +18,12 @@ p {
   font-weight: 400;
 }
 
-
-
-:focus {
-  outline: 0 none !important;
+label {
+  font-weight: 400;
 }
 
-label {
-  font-weight: 300;
+ul, ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

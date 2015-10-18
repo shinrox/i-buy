@@ -7,13 +7,6 @@ a {
   color: map-get($text-colors, light);
 }
 
-a.success {
-  color: map-get($text-colors, success);
-}
-
-a.danger {
-  color: map-get($text-colors, danger);
-}
 
 label:first-letter{
   text-transform: capitalize;

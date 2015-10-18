@@ -9,23 +9,21 @@ angular.module 'iBuy'
 # Config Twain
 # =============================================
 .config ($stateProvider, $urlRouterProvider) ->
-
+  path = "app/features/home"
   $stateProvider
     .state "home",
       url         : "/"
-      templateUrl : "app/features/home/template.html"
-      controller  : "HomeController as ctrl"
       resolve:
-        products: ['ProductsService', (ProductsService)->
-          ProductsService.all()
+        categories: ['CategoriesService', (CategoriesService)->
+          CategoriesService.all()
         ]
       views:
         '@':
-          templateUrl : "app/features/home/template.html"
+          templateUrl : "#{path}/index/template.html"
           controller  : "HomeController as ctrl"
-        'products@home':
-          templateUrl : "app/features/products/template.html"
-          controller  : "ProductsController as ctrl"
+        'categories@home':
+          templateUrl : "#{path}/subviews/categories/template.html"
+          controller  : "CategoriesController as ctrl"
 
 
   $urlRouterProvider.otherwise '/'

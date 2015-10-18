@@ -1,0 +1,27 @@
+.list {
+  ul {
+    text-align: center;
+
+    li {
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 20px;
+      height: 350px;
+      display: inline-block;
+      line-height: 350px;
+      position: relative;
+
+      img {
+        position: absolute;
+        min-width: 100%;
+        width: 1280px;
+        height: 720px;
+        top: 50%;
+        left: 50%;
+        margin-top: -360px;
+        margin-left: -640px
+
+      }
+    }
+  }
+}
