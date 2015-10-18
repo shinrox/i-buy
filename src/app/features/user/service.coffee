@@ -1,58 +1,80 @@
 angular.module 'iBuy.services'
-.service 'UserService', ($q, $timeout)->
+.service 'UserService', ($q)->
 
   return service =
     register: (user)->
       users = simpleStorage.get('availableUsers') or {}
       defer = $q.defer()
 
-      $timeout ->
-        exist = users[user.login]
+      exist = users[user.login]
 
-        if !exist?
-          users[user.login] = user
-          simpleStorage.set('availableUsers', users)
-          defer.resolve(user)
-        else
-          defer.reject('user.already.exists')
+      if !exist? and user.login isnt 'anonymous'
+        users[user.login] = angular.extend user, {
+          shoppings: []
+          cart: 
+            currentProducts: {}
+            productsCount: 0
+            currentTotal: 0
+        }
 
-      , 500
+        simpleStorage.set('availableUsers', users)
+        defer.resolve(user)
+      else
+        defer.reject('user.already.exists')
+
 
       defer.promise
 
+    save: ->
+      users = simpleStorage.get('availableUsers') or {}
+      exist = users[service.current.login]
+      if exist?
+        users[service.current.login] = service.current
+        simpleStorage.set('availableUsers', users)
+      else if service.current.login is 'anonymous'
+        simpleStorage.set('anonymousUser', service.current)
 
     login: (user)->
       users = simpleStorage.get('availableUsers') or {}
       defer = $q.defer()
 
-      $timeout ->
-        exist = users[user.login]
-        if exist? and exist.password is user.password
-          simpleStorage.set('currentUser', exist)
-          service.currentUser()
-          defer.resolve(exist)
-        else
-          defer.reject('user.not.found')
-      , 500
+      exist = users[user.login]
+      if exist? and exist.password is user.password
+        simpleStorage.set('currentUser', exist)
+        angular.extend service.current, exist
+        service.logged = true
+        defer.resolve(exist)
+      else
+        defer.reject('user.not.found')
 
       defer.promise
 
     currentUser: ()->
-      user = simpleStorage.get('currentUser')
-      service.logged = user?
-      return service.current = user or { name: 'anonymous'}
-      
+      user =
+        login: 'anonymous'
+        cart:
+          currentProducts: {}
+          productsCount: 0
+          currentTotal: 0
 
+      currentUser = simpleStorage.get('currentUser')
+      service.logged = currentUser?
+        
+      if !service.logged
+        angular.extend user, simpleStorage.get('anonymousUser')
+
+      angular.extend service.current, user, currentUser
+      return service.current
+      
+    current: {}
     logged: false
 
     logout: ->
       defer = $q.defer()
-
-      $timeout ->
-        simpleStorage.deleteKey('currentUser')
-        service.currentUser()
-        defer.resolve()
-      , 300
+      simpleStorage.deleteKey('currentUser')
+      service.logged = false
+      angular.extend service.current, simpleStorage.get('anonymousUser')
+      defer.resolve()
 
       return defer.promise
 

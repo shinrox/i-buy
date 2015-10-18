@@ -1,11 +1,12 @@
 angular.module "iBuy.controllers"
-.controller "NavBarCtrl", ($rootScope, $scope, $state, $document, CartService, UserService, $uibModal) ->
+.controller "NavBarCtrl", ($scope, $document, CartService, UserService, $uibModal) ->
   ###
   ## Init
   ###
   ctrl = @
 
-  ctrl.user = UserService
+  UserService.currentUser()
+  ctrl.UserService = UserService
 
   $document.on 'scroll', ()->
     ctrl.headerClass = if $document.scrollTop() > 30 then 'small' else 'big'
@@ -13,7 +14,7 @@ angular.module "iBuy.controllers"
 
   ctrl.headerClass = if $document.scrollTop() > 30 then 'small' else 'big'
 
-  ctrl.Cart = CartService.cart
+  ctrl.currentUser = UserService.current
 
   ctrl.actions =
     openLogin: ->
@@ -21,8 +22,13 @@ angular.module "iBuy.controllers"
         templateUrl: 'app/components/login/modal/template.html'
         controller: 'LoginController as ctrl'
       }
+
+      modal.result.then ->
+        # ctrl.currentUser = UserService.current
+
     logout: ->
       UserService.logout()
+      # ctrl.currentUser = UserService.current
 
   return @
 

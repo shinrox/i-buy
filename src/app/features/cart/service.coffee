@@ -1,55 +1,64 @@
 angular.module 'iBuy.services'
-.service 'CartService', (UserService)->
+.service 'CartService', (UserService, ShoppingsService)->
 
   service =
-    cart:
-      currentProducts: {}
-      productsCount: 0
-      currentTotal: 0
     calcTotal: ->
+      user = UserService.current
       total = 0
 
-      for own key, product of service.cart.currentProducts
+      for own key, product of user.cart.currentProducts
         total += (product.price * product.count)
 
-      service.cart.currentTotal = parseFloat(total).toFixed(2)
+      user.cart.currentTotal = parseFloat(total).toFixed(2)
 
-    updateCart: ->
-      currentUser = UserService.currentUser().login
+    clearCart: (user)->
+      user = UserService.current
+      angular.extend user.cart, {
+        currentProducts: {}
+        productsCount: 0
+        currentTotal: 0
+      }
 
+    updateCart: ()->
       service.calcTotal()
-      if service.cart.productsCount < 0
-        service.cart.productsCount = 0
-      simpleStorage.set(currentUser + 'Cart', service.cart)
+      UserService.save()
 
     add: (product, quantity = 1)->
-      exist = service.cart.currentProducts[product._id]
+      user = UserService.current
+      exist = user.cart.currentProducts[product._id]
       if exist?
         exist.count += quantity
       else
         product.count = quantity
-        service.cart.currentProducts[product._id] = product
+        user.cart.currentProducts[product._id] = product
 
-      service.cart.productsCount += quantity
+      user.cart.productsCount += quantity
       service.updateCart()
 
     remove: (product, quantity = 1)->
-      exist = service.cart.currentProducts[product._id]
+      user = UserService.current
+      exist = user.cart.currentProducts[product._id]
 
       if exist?
         exist.count -= quantity
 
         if exist.count <= 0
-          delete service.cart.currentProducts[product._id]
+          delete user.cart.currentProducts[product._id]
 
-      service.cart.productsCount += quantity
+      user.cart.productsCount += quantity
       service.updateCart()
 
     load: ->
-      currentUser = UserService.currentUser().login
-      userCart = simpleStorage.get(currentUser + 'Cart')
-      service.cart = userCart || service.cart
-      service.calcTotal()
+      UserService.currentUser()
+      service.updateCart()
+
+    finish: (id)->
+      user = UserService.current
+      user.shoppings[id] = angular.copy user.cart
+      service.clearCart()
+      UserService.save()
+
+
 
   service.load()
 

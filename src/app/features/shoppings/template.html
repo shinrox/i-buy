@@ -1,0 +1,58 @@
+
+<div class="sidebar">
+  <div class="btn-group-vertical">
+    <button 
+      ng-repeat='filter in ctrl.filters' 
+      ng-click='ctrl.actions.filterBy(filter)'
+      type="button" 
+      class="btn btn-default"
+      ng-class='{active: (ctrl.currentFilter == filter)}'
+      ng-bind='filter.name'></button>
+  </div>
+</div>
+
+<div class="shoppings-list">
+  <h3>Exibindo: <span ng-bind='ctrl.currentFilter.name'></span></h3>
+
+  <ul class='list' >
+    <li ng-if="!ctrl.currentShoppings.length > 0">
+      Nenhum item encontrado.
+    </li>
+
+    <li ng-if='!ctrl.currentUser.shoppings.length > 0'>
+      Você não tem nenhuma compra efetuada, <a ui-sref="products({category: 'all'})">clique aqui</a> e comece a adicionar produtos ao seu carrinho.
+    </li>
+
+    <li ng-repeat="shopping in ctrl.currentShoppings">
+      <span class='info id' ng-bind='shopping.id'></span>
+      <span class='info products' ng-bind='shopping.productsCount'></span>
+      <span class='info total' ng-bind='shopping.currentTotal'></span>
+      <span 
+        ng-if="ctrl.currentFilter.status == 'ALL'" 
+        class='info status' ng-bind='ctrl.status[shopping.status]'></span>
+
+      <span class='actions'>
+        <span 
+          ng-click='ctrl.actions.remove(shopping)'
+          ng-if="shopping.status == 'CREATED'">excluir</span>
+
+        <span 
+          ng-click='ctrl.actions.remove(shopping)'
+          >visualizar</span>
+      </span>
+    </li>
+  </ul>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+

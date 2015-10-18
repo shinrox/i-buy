@@ -36,7 +36,7 @@ angular.module 'iBuy.controllers'
     login: ->
       promise = UserService.login(ctrl.user)
       promise.then ->
-        CartService.updateCart()
+        CartService.load()
         $modalInstance.close()
 
       rejected = ->

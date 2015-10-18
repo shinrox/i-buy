@@ -1,32 +1,47 @@
-<div id="header" class="light-text" role="navigation" ng-class="ctrl.headerClass">
+<div id="header" 
+  class="light-text" 
+  role="navigation" 
+  ng-class="ctrl.headerClass">
+
   <div class="logo-wrapper pull-left">
     <a ui-sref="home" class='light-text no-decoration'>
       <span class="logo">iBuy</span>
     </a>
   </div>
   
-  <div class='user pull-right' ng-if='ctrl.user.logged'>
-    <span>Bem vindo, </span> <span ng-bind='ctrl.user.current.name'></span>
-    | <a class='light-text' ng-click='ctrl.actions.logout()'>Sair</a>
+  <div class='user pull-right' >
+    <div class="user-wrapper" ng-if='ctrl.UserService.logged'>
+      <span>Bem vindo, </span> <span ng-bind='ctrl.currentUser.name'></span>
+      | <a class='light-text' ng-click='ctrl.actions.logout()'>Sair</a>
+    </div>
+
+    <div class="user-wrapper" ng-if='!ctrl.UserService.logged'>
+      <a ng-click='ctrl.actions.openLogin()' class='light-text'>Login</a>
+    </div>
   </div>
 
-  <div class='user pull-right' ng-if='!ctrl.user.logged'>
-    <a ng-click='ctrl.actions.openLogin()' class='light-text'>Login</a>
-  </div>
-  
-  <div class="pull-right cart-info" 
-    ng-class="{'empty': ctrl.Cart.productsCount == 0}">
+  <div class="pull-right cart-info " 
+    ng-class="{'empty': ctrl.currentUser.cart.productsCount == 0}">
 
     <div class="cart-icon">
       <span class='glyphicon glyphicon-shopping-cart'></span>
       <span 
         class="badge"
-        ng-bind='ctrl.Cart.productsCount'>
+        ng-bind='ctrl.currentUser.cart.productsCount'>
       </span>
-      <span class='cart-total' ng-bind='ctrl.Cart.currentTotal | currency:"R$"'></span>
+      <span class='cart-total' ng-bind='ctrl.currentUser.cart.currentTotal | currency:"R$"'></span>
     </div>
 
   </div>
+
+  <div class="pull-right link" ng-if='ctrl.UserService.logged' ui-sref-active='active'>
+    <a class='light-text no-decoration'  ui-sref="shoppings">Minhas compras</a>
+  </div>
+
+  <div class="pull-right link" ui-sref-active='active'>
+    <a class='light-text no-decoration'  ui-sref="products({category: 'all'})">Produtos</a>
+  </div>
+
 
   
 </div>

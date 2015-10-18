@@ -5,6 +5,7 @@
   left:0;
   width:100%;
   z-index: 500;
+  font-size: 20px;
   -webkit-transition:0.3s linear all;
   -moz-transition:0.3s linear all;
   -o-transition:0.3s linear all;
@@ -14,9 +15,28 @@
     font-size: 30px;
     padding: 0 20px;
   }
+
+  .link {
+    padding: 0 25px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken(map-get($colors, primary), 2%);
+    }
+
+    &.active {
+      background-color: darken(map-get($colors, primary), 5%);
+    }
+
+    a {
+      display: block;
+    }
+
+  }
   
   .cart-info {
     height: 100%;
+    padding: 0 10px;
 
     .cart-icon {
       height: 100%;
@@ -48,6 +68,7 @@
       }
 
       .cart-total {
+        font-size: 14px;
         padding-left: 40px;
         width: 100%;
         text-align: right;
@@ -56,6 +77,9 @@
     }
 
     &.empty {
+      width: 24px;
+      margin: 0 16px;
+      
       .cart-total, .badge {
         display: none;
       }
@@ -70,28 +94,22 @@
 
   .user {
     font-size: 20px;
-    padding: 0 30px;
+    padding: 0 25px;
     height: 100%;
   }
 
   &.big {
     height:85px;
-
-    .logo, .user, .cart-total {
-      line-height: 85px;
-    }
+    line-height: 85px;
 
   }
 
   &.small {
     height:40px;
-
-    .logo, .user, .cart-total {
-      line-height: 40px;
-    }
+    line-height: 40px;
   }
 
-
+  
 
 }
 

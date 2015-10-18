@@ -1,0 +1,55 @@
+.sidebar {
+  position: fixed;
+  padding-top: 120px;
+  text-align: center;
+  top:0;
+  left: 0;
+  width: 200px;
+  bottom: 0;
+  border-right: 1px solid map-get($colors, border);
+
+}
+
+.shoppings-list {
+  padding-left: 200px;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+
+  h3 {
+    text-align: left;
+    padding: 4px 10px;
+    margin: 0 auto;
+    border-bottom: 1px solid map-get($colors, border) ;
+  }
+
+  .list {
+    padding-top: 20px;
+
+    li {
+      height: 30px;
+
+      span.info {
+        float:left;
+        display: inline-block;
+        width: 100px;
+        overflow: hidden;
+        text-overflow: ellipses;
+
+        &.id {
+          width: 30px;
+        }
+
+      }
+
+    }
+  }
+}
+
+
+
+
+
+
+
+
