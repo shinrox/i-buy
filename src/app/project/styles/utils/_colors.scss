@@ -5,10 +5,11 @@
 
 
 $colors: (
-  primary: #1A77D2,
+  primary: #01579B,
   secondary: #FFFFFF,
   third: #F1F0F1,
-  border: #F1F1F1
+  border: #F1F1F1,
+  badge: #50AE69
 );
 
 $text-colors: (
@@ -16,8 +17,8 @@ $text-colors: (
   main: #333,
   mid: #717171,
   dark: #B9B9B9,
-  link: #1A77D2,
-  secondary: #1A77D2,
+  link: #01579B,
+  secondary: #01579B,
   success: #50AE69,
   danger: #E24342,
   error: #D84242
@@ -25,7 +26,7 @@ $text-colors: (
 
 $btn-colors: (
   primary: #50AE69,
-  secondary: #1A77D2,
+  secondary: #01579B,
   danger: #E24342,
   sacancel: #B6B6B6
 );

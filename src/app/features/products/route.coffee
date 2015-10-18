@@ -12,7 +12,7 @@ angular.module 'iBuy'
   path = "app/features/products"
   $stateProvider
     .state "products",
-      url         : "/products"
+      url         : "/products/:category"
       resolve:
         products: ['ProductsService', (ProductsService)->
           ProductsService.all()

@@ -4,9 +4,9 @@
       <div product-thumb product='product'></div>
       <span ng-bind="product.name"></span>
       <br/>
-      R$<span ng-bind="product.price"></span>
+      <span ng-bind='product.price | currency:"R$"'></span>
       <br/>
-      <a ng-click='ctrl.addToCart(product, 1)'>+ Adicionar</a>
+      <a ng-click='ctrl.addToCart(product)'>+ Adicionar</a>
     </li>
   </ul>
 </div>

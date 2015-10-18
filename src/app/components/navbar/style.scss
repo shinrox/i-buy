@@ -5,18 +5,93 @@
   left:0;
   width:100%;
   z-index: 500;
-  -webkit-transition:0.5s linear all;
-  -moz-transition:0.5s linear all;
-  -o-transition:0.5s linear all;
-  transition:0.5s linear all;
+  -webkit-transition:0.3s linear all;
+  -moz-transition:0.3s linear all;
+  -o-transition:0.3s linear all;
+  transition:0.3s linear all;
+    
+  .logo {
+    font-size: 30px;
+    padding: 0 20px;
+  }
+  
+  .cart-info {
+    height: 100%;
+
+    .cart-icon {
+      height: 100%;
+      position: relative;
+      text-align: center;
+      cursor: pointer;
+
+      .glyphicon {
+        width: 24px;
+        left: 0;
+        height: 24px;
+        font-size: 24px;
+        position: absolute;
+        top: 50%;
+        margin-top: -12px;
+        text-align: center;
+
+      }
+
+      .badge {
+        line-height: 12px;
+        font-size: 10px;
+        background-color: map-get($colors, badge);
+        position: absolute;
+        margin-top: -17px;
+        top: 50%;
+        left: 12px;
+        text-align: center;
+      }
+
+      .cart-total {
+        padding-left: 40px;
+        width: 100%;
+        text-align: right;
+
+      }
+    }
+
+    &.empty {
+      .cart-total, .badge {
+        display: none;
+      }
+
+      .cart-icon {
+        height: 100%;
+      }
+    }
+
+  } // end cart-info
+
+
+  .user {
+    font-size: 20px;
+    padding: 0 30px;
+    height: 100%;
+  }
 
   &.big {
-    height:85px;   
+    height:85px;
+
+    .logo, .user, .cart-total {
+      line-height: 85px;
+    }
+
   }
 
   &.small {
     height:40px;
+
+    .logo, .user, .cart-total {
+      line-height: 40px;
+    }
   }
+
+
 
 }
 

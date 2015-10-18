@@ -13,7 +13,7 @@ angular.module 'iBuy'
   
   
 
-  ctrl.addToCart = (product, quantity)->
-    CartService.add(product, quantity)
+  ctrl.addToCart = (product)->
+    CartService.add(product)
 
   return @

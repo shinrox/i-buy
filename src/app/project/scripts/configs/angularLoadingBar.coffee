@@ -8,6 +8,6 @@ ___
 ###
 angular.module 'iBuy.configs'
   .config [ 'cfpLoadingBarProvider', (cfpLoadingBarProvider) ->
-    cfpLoadingBarProvider.includeSpinner = yes
+    cfpLoadingBarProvider.includeSpinner = false
     cfpLoadingBarProvider.latencyThreshold = 250
   ]
