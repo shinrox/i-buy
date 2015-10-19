@@ -29,7 +29,11 @@ angular.module 'iBuy.services'
 
     add: (product, quantity = 1)->
       user = UserService.current
+      if user.cart.status is 'PAID'
+        angular.extend user.cart, UserService.newCart()
+
       exist = user.cart.products[product._id]
+
       if exist?
         exist.count += quantity
       else
@@ -57,7 +61,7 @@ angular.module 'iBuy.services'
     finish: (keepCart)->
       user = UserService.current
       _idx = _.findIndex(user.shoppings, {_id: user.cart._id})
-      
+
       if _idx > -1
         user.shoppings[_idx] = angular.copy user.cart
       else

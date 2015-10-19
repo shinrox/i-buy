@@ -5,6 +5,7 @@ angular.module 'iBuy.services'
     newCart: ->
       return cart =
         _id: new Date().getTime()
+        status: "CREATED"
         products: {}
         productsCount: 0
         currentTotal: 0

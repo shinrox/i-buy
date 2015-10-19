@@ -33,7 +33,7 @@
 
   <div class="pull-right cart-info "
     ui-sref="cart({id: ctrl.currentUser.cart._id})"
-    ng-class="{'empty': ctrl.currentUser.cart.productsCount == 0}"
+    ng-class="{'empty': (ctrl.currentUser.cart.productsCount == 0 || ctrl.currentUser.cart.status == 'PAID')}"
     title='Visualizar carrinho'>
 
     <div class="cart-icon">

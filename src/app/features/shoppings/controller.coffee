@@ -34,6 +34,8 @@ angular.module 'iBuy.controllers'
     pay: (shopping)->
       ShoppingsService.pay(shopping)
       ctrl.actions.filterBy(ctrl.currentFilter)
+      if shopping._id is ctrl.currentUser.cart._id
+        CartService.clearCart()
 
     remove: (shopping)->
       sAlert.confirm({

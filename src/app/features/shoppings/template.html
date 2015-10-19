@@ -41,7 +41,7 @@
         <span 
           class='action glyphicon glyphicon-trash'
           ng-click='ctrl.actions.remove(shopping)'
-          >
+          ng-if="shopping.status != 'PAID'">
         </span>
 
         <span class='action glyphicon glyphicon-eye-open'
