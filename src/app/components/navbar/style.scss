@@ -10,11 +10,27 @@
   -moz-transition:0.3s linear all;
   -o-transition:0.3s linear all;
   transition:0.3s linear all;
-    
-  .logo {
-    font-size: 30px;
-    padding: 0 20px;
+
+  .logo-wrapper {
+    height: 100%;
+    width: 50px;
+
+    a {
+      display: block;
+      padding: 0 24px;
+      height: 100%;
+    }
+
+    .logo {
+      font-size: 30px;
+      width: 50px;
+      height: 100%;
+      background: url('/assets/images/logo.png') no-repeat scroll center center transparent;
+      display: block;
+      
+    }
   }
+    
 
   .link {
     padding: 0 20px;
@@ -102,11 +118,23 @@
     height:85px;
     line-height: 85px;
 
+    .logo-wrapper {
+      a {
+        line-height: 85px;
+      }
+    }
+
   }
 
   &.small {
     height:40px;
     line-height: 40px;
+
+    .logo-wrapper {
+      a {
+        line-height: 40px;
+      }
+    }
   }
 
   
