@@ -6,4 +6,9 @@
 </div>
 <div class="modal-body product-modal">
   <div product-preview product='ctrl.product'></div>
+  <div>
+    <p>Informações do produto</p>
+    <p class='product-info' ng-bind='ctrl.product.about'></p>
+    <p>Preço <span ng-bind='ctrl.product.price | currency: "R$"'></span></p>
+  </div>
 </div>

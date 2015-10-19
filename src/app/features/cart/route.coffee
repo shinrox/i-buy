@@ -9,15 +9,15 @@ angular.module 'iBuy'
 # Config Twain
 # =============================================
 .config ($stateProvider, $urlRouterProvider) ->
-  path = "app/features/products"
+  path = "app/features/cart"
   $stateProvider
-    .state "products",
-      url         : "/products/:category"
+    .state "cart",
+      url         : "/cart/{id:int}"
       templateUrl : "#{path}/template.html"
-      controller  : "ProductsController as ctrl"
+      controller  : "CartController as ctrl"
       resolve:
-        products: ['ProductsService', (ProductsService)->
-          ProductsService.all()
+        cart: ['$stateParams', 'CartService', ($stateParams, CartService)->
+          CartService.setCurrent($stateParams.id)
         ]
 
 

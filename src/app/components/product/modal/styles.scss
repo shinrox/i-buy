@@ -2,14 +2,28 @@
   color: map-get($text-colors, main);
 }
 
+.modal-body {
+  overflow: auto;
+  max-height: 500px;
+}
+
 .product-modal {
   .preview {
     width: 100%;
-
+    margin-bottom: 5px;
     img {
       max-width: 100%;
       height: auto;
     }
+
+  }
+  
+  p {
+    font-weight: 400;
+  }
+
+  .product-info {
+    font-weight: 300;
   }
 
 }

@@ -9,9 +9,10 @@ angular.module 'iBuy.services'
     remove: (shopping)->
       return false if shopping.status is 'PAID'
       user = UserService.current
-      _idx = _.indexOf(user.shoppings, {_id: shopping._id})
-
+      _idx = _.findIndex(user.shoppings, {_id: shopping._id})
       user.shoppings.splice(_idx, 1)
+      
+
       UserService.save()
 
     create: ->

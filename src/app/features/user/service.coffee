@@ -2,6 +2,12 @@ angular.module 'iBuy.services'
 .service 'UserService', ($q)->
 
   return service =
+    newCart: ->
+      return cart =
+        _id: new Date().getTime()
+        products: {}
+        productsCount: 0
+        currentTotal: 0
     register: (user)->
       users = simpleStorage.get('availableUsers') or {}
       defer = $q.defer()
@@ -11,10 +17,7 @@ angular.module 'iBuy.services'
       if !exist? and user.login isnt 'anonymous'
         users[user.login] = angular.extend user, {
           shoppings: []
-          cart: 
-            currentProducts: {}
-            productsCount: 0
-            currentTotal: 0
+          cart: service.newCart()
         }
 
         simpleStorage.set('availableUsers', users)
@@ -52,10 +55,7 @@ angular.module 'iBuy.services'
     currentUser: ()->
       user =
         login: 'anonymous'
-        cart:
-          currentProducts: {}
-          productsCount: 0
-          currentTotal: 0
+        cart: service.newCart()
 
       currentUser = simpleStorage.get('currentUser')
       service.logged = currentUser?

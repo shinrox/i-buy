@@ -16,6 +16,7 @@ angular.module("iBuy.factories")
         confirmButtonColor: '#2196f3'
         confirmButtonText: 'Ok'
         closeOnConfirm: !fn?
+      
 
       config = $.extend(true, config, options)
 

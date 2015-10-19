@@ -1,20 +1,11 @@
-.sidebar {
-  position: fixed;
-  padding-top: 120px;
-  text-align: center;
-  top:0;
-  left: 0;
-  width: 200px;
-  bottom: 0;
-  border-right: 1px solid map-get($colors, border);
-
-}
-
-.shoppings-list {
-  padding-left: 200px;
+.cart-list {
   text-align: center;
   width: 95%;
   margin: 0 auto;
+
+  .row {
+    padding: 20px 10px;
+  }
 
   h3 {
     text-align: left;
@@ -44,7 +35,7 @@
         cursor: pointer;
       }
 
-      span.info {
+      .info {
         display: inline-block;
         width: 19%;
         overflow: hidden;
@@ -71,11 +62,3 @@
     }
   }
 }
-
-
-
-
-
-
-
-

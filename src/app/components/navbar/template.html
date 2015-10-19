@@ -3,7 +3,7 @@
   role="navigation" 
   ng-class="ctrl.headerClass">
 
-  <div class="logo-wrapper pull-left">
+  <div class="logo-wrapper pull-left" title='iBuy'>
     <a ui-sref="home" class='light-text no-decoration'>
       <span class="logo">iBuy</span>
     </a>
@@ -11,17 +11,30 @@
   
   <div class='user pull-right' >
     <div class="user-wrapper" ng-if='ctrl.UserService.logged'>
-      <span>Bem vindo, </span> <span ng-bind='ctrl.currentUser.name'></span>
-      | <a class='light-text' ng-click='ctrl.actions.logout()'>Sair</a>
+      <span ng-bind='ctrl.currentUser.name'></span>
+      &nbsp;|&nbsp;
+      <a 
+        class='light-text' 
+        ng-click='ctrl.actions.logout()'
+        title='Sair'>
+        Sair
+      </a>
     </div>
 
     <div class="user-wrapper" ng-if='!ctrl.UserService.logged'>
-      <a ng-click='ctrl.actions.openLogin()' class='light-text'>Login</a>
+      <a 
+        ng-click='ctrl.actions.openLogin()'
+        class='light-text'
+        title='Login'>
+        Login
+      </a>
     </div>
   </div>
 
-  <div class="pull-right cart-info " 
-    ng-class="{'empty': ctrl.currentUser.cart.productsCount == 0}">
+  <div class="pull-right cart-info "
+    ui-sref="cart({id: ctrl.currentUser.cart._id})"
+    ng-class="{'empty': ctrl.currentUser.cart.productsCount == 0}"
+    title='Visualizar carrinho'>
 
     <div class="cart-icon">
       <span class='glyphicon glyphicon-shopping-cart'></span>
@@ -34,11 +47,18 @@
 
   </div>
 
-  <div class="pull-right link" ng-if='ctrl.UserService.logged' ui-sref-active='active'>
+  <div 
+    class="pull-right link" 
+    ng-if='ctrl.UserService.logged'
+    title='Minhas compras'
+    ui-sref-active='active'>
     <a class='light-text no-decoration'  ui-sref="shoppings">Minhas compras</a>
   </div>
 
-  <div class="pull-right link" ui-sref-active='active'>
+  <div 
+    class="pull-right link"
+    title='Produtos'
+    ui-sref-active='active'>
     <a class='light-text no-decoration'  ui-sref="products({category: 'all'})">Produtos</a>
   </div>
 

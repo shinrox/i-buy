@@ -19,7 +19,6 @@ angular.module 'iBuy.controllers'
         apiKey: APP_ENV.APIKEY
       data: ctrl.model
 
-    console.log config
     promise = $http(config)
 
     promise.then ->

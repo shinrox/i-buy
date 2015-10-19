@@ -1,16 +1,17 @@
 angular.module 'iBuy.controllers'
-.controller 'ShoppingsController', (UserService, CartService, user, $filter)->
+.controller 'ShoppingsController', (ShoppingsService, UserService, CartService, user, $filter, sAlert)->
 
   ctrl = @
 
   filter = $filter('filter')
 
+  CartService.finish(true)
+
   ctrl.currentUser = UserService.current
   ctrl.status =
     ALL: "Todas"
     CREATED: "Em andamento"
-    WAITING: "Aguardando pagamento"
-    PAID: "Finalizadas"
+    PAID: "Finalizada"
 
 
   ctrl.filters = []
@@ -29,9 +30,20 @@ angular.module 'iBuy.controllers'
       ctrl.currentShoppings = filter(ctrl.currentUser.shoppings, {
         status: if obj.status isnt 'ALL' then obj.status
       })
-    finish: ->
 
-    remove: ->
+    pay: (shopping)->
+      ShoppingsService.pay(shopping)
+      ctrl.actions.filterBy(ctrl.currentFilter)
 
+    remove: (shopping)->
+      sAlert.confirm({
+        text: 'Certeza que deseja apagar esta compra?'
+        closeOnConfirm: true
+      }, (confirm)->
+        if confirm
+          ShoppingsService.remove(ctrl.currentUser.cart)
+          if shopping._id is ctrl.currentUser.cart._id
+            CartService.clearCart()
+      )
 
   return @

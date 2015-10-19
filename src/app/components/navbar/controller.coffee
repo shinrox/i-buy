@@ -1,5 +1,4 @@
 angular.module "iBuy.controllers"
-.controller "NavBarCtrl", ($scope, $document, CartService, UserService, $uibModal) ->
   ###
   ## Init
   ###

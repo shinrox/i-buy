@@ -1,10 +1,13 @@
 angular.module 'iBuy.services'
-.service 'ProductsService', ($http, APP_ENV)->
+.service 'ProductsService', ($http, APP_ENV, $filter)->
+  filter = $filter('filter')
 
   basePath = "#{APP_ENV.API_BASE_URL}products"
 
   return service =
     all: ()->
+      # simpleStorage.get('products')
+      
       $http({
         method: 'GET'
         url: basePath
@@ -13,6 +16,9 @@ angular.module 'iBuy.services'
       })
 
     get: (id)->
+      # all = simpleStorage.get('products')
+      # return filter({_id: id})[0]
+      
       $http({
         method: 'GET'
         url: "#{basePath}/#{id}"

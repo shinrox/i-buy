@@ -5,16 +5,20 @@ angular.module 'iBuy.services'
     calcTotal: ->
       user = UserService.current
       total = 0
+      productsCount = 0
 
-      for own key, product of user.cart.currentProducts
+      for own key, product of user.cart.products
+        productsCount += product.count
         total += (product.price * product.count)
 
+      user.cart.productsCount = productsCount
       user.cart.currentTotal = parseFloat(total).toFixed(2)
 
     clearCart: (user)->
       user = UserService.current
       angular.extend user.cart, {
-        currentProducts: {}
+        _id: new Date().getTime()
+        products: {}
         productsCount: 0
         currentTotal: 0
       }
@@ -25,37 +29,55 @@ angular.module 'iBuy.services'
 
     add: (product, quantity = 1)->
       user = UserService.current
-      exist = user.cart.currentProducts[product._id]
+      exist = user.cart.products[product._id]
       if exist?
         exist.count += quantity
       else
         product.count = quantity
-        user.cart.currentProducts[product._id] = product
+        user.cart.products[product._id] = product
 
-      user.cart.productsCount += quantity
       service.updateCart()
 
     remove: (product, quantity = 1)->
       user = UserService.current
-      exist = user.cart.currentProducts[product._id]
+      exist = user.cart.products[product._id]
 
       if exist?
         exist.count -= quantity
 
         if exist.count <= 0
-          delete user.cart.currentProducts[product._id]
+          delete user.cart.products[product._id]
 
-      user.cart.productsCount += quantity
       service.updateCart()
 
     load: ->
       UserService.currentUser()
       service.updateCart()
 
-    finish: (id)->
+    finish: (keepCart)->
       user = UserService.current
-      user.shoppings[id] = angular.copy user.cart
-      service.clearCart()
+      _idx = _.findIndex(user.shoppings, {_id: user.cart._id})
+      
+      if _idx > -1
+        user.shoppings[_idx] = angular.copy user.cart
+      else
+        user.cart.status = 'CREATED'
+        user.shoppings.push angular.copy(user.cart)
+      
+      if !keepCart
+        service.clearCart()
+      UserService.save()
+
+
+    setCurrent: (id)->
+      user = UserService.current
+      
+      if user.cart._id isnt id
+        if user.cart.productsCount > 0
+          service.finish()
+        _idx = _.findIndex(user.shoppings, {_id: id})
+        angular.extend user.cart, user.shoppings[_idx]
+
       UserService.save()
 
 

@@ -14,31 +14,44 @@
 <div class="shoppings-list">
   <h3>Exibindo: <span ng-bind='ctrl.currentFilter.name'></span></h3>
 
-  <ul class='list' >
-    <li ng-if="!ctrl.currentShoppings.length > 0">
+  <ul class='text-left list' >
+    <li class='text-center' ng-if="!ctrl.currentShoppings.length > 0">
       Nenhum item encontrado.
     </li>
 
-    <li ng-if='!ctrl.currentUser.shoppings.length > 0'>
+    <li class='text-center' ng-if='!ctrl.currentUser.shoppings.length > 0'>
       Você não tem nenhuma compra efetuada, <a ui-sref="products({category: 'all'})">clique aqui</a> e comece a adicionar produtos ao seu carrinho.
     </li>
 
-    <li ng-repeat="shopping in ctrl.currentShoppings">
-      <span class='info id' ng-bind='shopping.id'></span>
-      <span class='info products' ng-bind='shopping.productsCount'></span>
-      <span class='info total' ng-bind='shopping.currentTotal'></span>
+    <li ng-if='ctrl.currentShoppings.length > 0' class='header'>
+      <span class='info quantity'>Qtd.</span>
+      <span class='info total'>Total</span>
       <span 
-        ng-if="ctrl.currentFilter.status == 'ALL'" 
+        class='info status'>Status</span>
+      <span class='info actions'>Ações</span>
+    </li>
+
+    <li ng-repeat="shopping in ctrl.currentShoppings">
+      <span class='info quantity' ng-bind='shopping.productsCount'></span>
+      <span class='info total' ng-bind='shopping.currentTotal | currency:"R$"'></span>
+      <span 
         class='info status' ng-bind='ctrl.status[shopping.status]'></span>
 
-      <span class='actions'>
+      <span class='info actions'>
         <span 
+          class='action glyphicon glyphicon-trash'
           ng-click='ctrl.actions.remove(shopping)'
-          ng-if="shopping.status == 'CREATED'">excluir</span>
+          >
+        </span>
 
-        <span 
-          ng-click='ctrl.actions.remove(shopping)'
-          >visualizar</span>
+        <span class='action glyphicon glyphicon-eye-open'
+          ui-sref='cart({id: shopping._id})'>
+        </span>
+        
+        <span class='action glyphicon glyphicon-usd'
+          ng-click='ctrl.actions.pay(shopping)'
+          ng-if="shopping.status != 'PAID'">
+        </span>
       </span>
     </li>
   </ul>
