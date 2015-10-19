@@ -35,6 +35,7 @@ angular.module 'iBuy.services'
       if exist?
         users[service.current.login] = service.current
         simpleStorage.set('availableUsers', users)
+        simpleStorage.set('currentUser', service.current)
       else if service.current.login is 'anonymous'
         simpleStorage.set('anonymousUser', service.current)
 
@@ -44,8 +45,8 @@ angular.module 'iBuy.services'
 
       exist = users[user.login]
       if exist? and exist.password is user.password
-        simpleStorage.set('currentUser', exist)
         angular.extend service.current, exist
+        simpleStorage.set('currentUser', service.current)
         service.logged = true
         defer.resolve(exist)
       else
@@ -74,6 +75,7 @@ angular.module 'iBuy.services'
       defer = $q.defer()
       simpleStorage.deleteKey('currentUser')
       service.logged = false
+
       angular.extend service.current, simpleStorage.get('anonymousUser')
       defer.resolve()
 

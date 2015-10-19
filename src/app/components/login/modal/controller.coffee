@@ -34,8 +34,11 @@ angular.module 'iBuy.controllers'
       promise.catch(rejected)
 
     login: ->
+      cart = angular.copy UserService.current.cart
       promise = UserService.login(ctrl.user)
-      promise.then ->
+      promise.then (user)->
+        angular.extend UserService.current.cart, cart
+        UserService.save()
         CartService.load()
         $modalInstance.close()
 
