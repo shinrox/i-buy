@@ -1,4 +1,5 @@
 angular.module "iBuy.controllers"
+.controller "NavBarCtrl", ($scope, $document, UserService, $uibModal) ->
   ###
   ## Init
   ###
@@ -22,12 +23,8 @@ angular.module "iBuy.controllers"
         controller: 'LoginController as ctrl'
       }
 
-      modal.result.then ->
-        # ctrl.currentUser = UserService.current
-
     logout: ->
       UserService.logout()
-      # ctrl.currentUser = UserService.current
 
   return @
 
