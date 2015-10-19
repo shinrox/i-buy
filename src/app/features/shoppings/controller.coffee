@@ -5,12 +5,15 @@ angular.module 'iBuy.controllers'
 
   filter = $filter('filter')
 
-  CartService.finish(true)
 
   ctrl.currentUser = UserService.current
+  if ctrl.currentUser.cart.productsCount > 0
+    CartService.updateStatus(ctrl.currentUser.cart.status)
+
   ctrl.status =
     ALL: "Todas"
     CREATED: "Em andamento"
+    WAITING: "Aguardando pagamento"
     PAID: "Finalizada"
 
 
@@ -43,7 +46,8 @@ angular.module 'iBuy.controllers'
         closeOnConfirm: true
       }, (confirm)->
         if confirm
-          ShoppingsService.remove(ctrl.currentUser.cart)
+          ShoppingsService.remove(shopping)
+          ctrl.actions.filterBy(ctrl.currentFilter)
           if shopping._id is ctrl.currentUser.cart._id
             CartService.clearCart()
       )

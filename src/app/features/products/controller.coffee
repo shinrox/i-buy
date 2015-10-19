@@ -1,5 +1,5 @@
 angular.module 'iBuy'
-.controller 'ProductsController', (products, alphanumSort, ProductsService, CartService)->
+.controller 'ProductsController', (products, alphanumSort, ProductsService, CartService, UserService)->
   ctrl = @
   Service = ProductsService
 
@@ -11,7 +11,10 @@ angular.module 'iBuy'
   # for product in ctrl.products
   #   Service.remove product._id
   
-  
+  ctrl.currentUser = UserService.current
+
+  if ctrl.currentUser.cart.status isnt 'CREATED'
+    angular.extend ctrl.currentUser.cart, UserService.newCart() 
 
   ctrl.addToCart = (product)->
     CartService.add(product)

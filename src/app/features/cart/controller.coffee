@@ -8,8 +8,9 @@ angular.module 'iBuy.controllers'
 
   ctrl.actions = 
     finish: ->
-      if crtl.currentUser.login isnt 'anonymous'
-        CartService.finish()
+      if ctrl.currentUser.login isnt 'anonymous'
+        console.log 'finish'
+        CartService.updateStatus('WAITING')
       else
         ctrl.actions.openLogin()
 
@@ -34,9 +35,12 @@ angular.module 'iBuy.controllers'
     remove: (product, quantity)->
       CartService.remove(product, quantity)
 
-    finish: ()->
-      CartService.finish(true)
-      $state.go('shoppings')
+    open: ()->
+      CartService.updateStatus('CREATED')
+      $state.go('products', {category: 'all'})
+
+    pay: ()->
+      CartService.updateStatus('PAID')
 
     removeShopping: ->
       sAlert.confirm({

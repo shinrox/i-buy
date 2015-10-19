@@ -1,5 +1,5 @@
 angular.module "iBuy.controllers"
-.controller "NavBarCtrl", ($scope, $document, UserService, $uibModal) ->
+.controller "NavBarCtrl", ($scope, $document, UserService, $uibModal, CartService, $state) ->
   ###
   ## Init
   ###
@@ -23,8 +23,19 @@ angular.module "iBuy.controllers"
         controller: 'LoginController as ctrl'
       }
 
+    goToCart: ()->
+      return if $state.is('cart')
+      
+      if ctrl.currentUser.cart.status isnt 'CREATED'
+        angular.extend ctrl.currentUser.cart, UserService.newCart()
+      $state.go('cart', {id: ctrl.currentUser.cart._id})
+
     logout: ->
+      if ctrl.currentUser.cart.productsCount > 0
+        CartService.updateStatus(ctrl.currentUser.cart.status)
+
       UserService.logout()
+      CartService.clearCart()
 
   return @
 

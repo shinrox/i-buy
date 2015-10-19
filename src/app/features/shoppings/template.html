@@ -14,30 +14,32 @@
 <div class="shoppings-list">
   <h3>Exibindo: <span ng-bind='ctrl.currentFilter.name'></span></h3>
 
-  <ul class='text-left list' >
-    <li class='text-center' ng-if="!ctrl.currentShoppings.length > 0">
-      Nenhum item encontrado.
+  <ul class='text-left list container-fluid' >
+    <li class='text-center row' ng-if="!ctrl.currentShoppings.length > 0 && ctrl.currentUser.shoppings.length > 0">
+      <p>Nenhum item encontrado.</p>
     </li>
 
-    <li class='text-center' ng-if='!ctrl.currentUser.shoppings.length > 0'>
+    <li class='text-center row' ng-if='!ctrl.currentUser.shoppings.length > 0'>
+      <p>
       Você não tem nenhuma compra efetuada, <a ui-sref="products({category: 'all'})">clique aqui</a> e comece a adicionar produtos ao seu carrinho.
+      </p>
     </li>
 
-    <li ng-if='ctrl.currentShoppings.length > 0' class='header'>
-      <span class='info quantity'>Qtd.</span>
-      <span class='info total'>Total</span>
+    <li ng-if='ctrl.currentShoppings.length > 0' class='header row'>
+      <span class='info quantity col-md-2'>Qtd.</span>
+      <span class='info total col-md-4'>Total</span>
       <span 
-        class='info status'>Status</span>
-      <span class='info actions'>Ações</span>
+        class='info status col-md-3'>Status</span>
+      <span class='info actions col-md-3'>Ações</span>
     </li>
 
-    <li ng-repeat="shopping in ctrl.currentShoppings">
-      <span class='info quantity' ng-bind='shopping.productsCount'></span>
-      <span class='info total' ng-bind='shopping.currentTotal | currency:"R$"'></span>
+    <li class='row' ng-repeat="shopping in ctrl.currentShoppings">
+      <span class='info quantity col-md-2' ng-bind='shopping.productsCount'></span>
+      <span class='info total col-md-4' ng-bind='shopping.currentTotal | currency:"R$"'></span>
       <span 
-        class='info status' ng-bind='ctrl.status[shopping.status]'></span>
+        class='info status col-md-3' ng-bind='ctrl.status[shopping.status]'></span>
 
-      <span class='info actions'>
+      <span class='info actions col-md-3'>
         <span 
           class='action glyphicon glyphicon-trash'
           ng-click='ctrl.actions.remove(shopping)'
@@ -50,7 +52,7 @@
         
         <span class='action glyphicon glyphicon-usd'
           ng-click='ctrl.actions.pay(shopping)'
-          ng-if="shopping.status != 'PAID'">
+          ng-if="shopping.status == 'WAITING'">
         </span>
       </span>
     </li>

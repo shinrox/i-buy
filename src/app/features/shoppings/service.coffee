@@ -10,8 +10,8 @@ angular.module 'iBuy.services'
       return false if shopping.status is 'PAID'
       user = UserService.current
       _idx = _.findIndex(user.shoppings, {_id: shopping._id})
-      user.shoppings.splice(_idx, 1)
       
+      user.shoppings.splice(_idx, 1)
 
       UserService.save()
 
