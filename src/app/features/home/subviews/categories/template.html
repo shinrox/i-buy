@@ -3,7 +3,7 @@
     <li ng-repeat="category in ctrl.categories" ui-sref='products({category: category.type})' title='{{category.name}}'>
       <div class='inner-shadow'>
         <img 
-          ng-src="/assets/images/{{category.image}}" 
+          ng-src="assets/images/{{category.image}}" 
           alt="category.name">
       </div>
       <div class="info light-text">
