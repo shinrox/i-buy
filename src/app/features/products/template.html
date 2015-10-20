@@ -1,3 +1,16 @@
+<div class='categories-filter'>
+  <ul>
+    <li class='category-link' ui-sref-active='active'>
+      <a ui-sref="products({category: 'all'})">Todos</a>
+    </li>
+
+    <li ng-repeat='category in ctrl.categories' ui-sref-active='active'>
+      <a ui-sref="products({category: category.type})" ng-bind='category.name'></a>
+    </li>
+  </ul>
+  
+</div>
+
 <div class="products-list view" >
   <ul>
     <li ng-repeat="product in ctrl.products">
@@ -6,7 +19,8 @@
       <br/>
       <span ng-bind='product.price | currency:"R$"'></span>
       <br/>
-      <a ng-click='ctrl.addToCart(product)'>+ Adicionar ao carrinho</a>
+      <a ng-click='ctrl.addToCart(product)' ng-if='product.quantity > product.sold'>+ Adicionar ao carrinho</a>
+      <a class='unavailable no-decoration' ng-if='product.quantity == product.sold'>Esgotado</a>
     </li>
   </ul>
 </div>

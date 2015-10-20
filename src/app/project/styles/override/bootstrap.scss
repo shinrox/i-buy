@@ -33,3 +33,7 @@ $caret-width-base: 4px;
 .modal-footer {
   border-top: none;
 }
+
+.btn[disabled], .disabled, .unavailable {
+  cursor: not-allowed !important;
+}

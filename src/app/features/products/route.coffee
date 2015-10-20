@@ -16,8 +16,12 @@ angular.module 'iBuy'
       templateUrl : "#{path}/template.html"
       controller  : "ProductsController as ctrl"
       resolve:
-        products: ['ProductsService', (ProductsService)->
-          ProductsService.all()
+        products: ['$stateParams', 'ProductsService', ($stateParams, ProductsService)->
+          ProductsService.get($stateParams.category)
+        ]
+
+        categories: ['CategoriesService', (CategoriesService)->
+          CategoriesService.all()
         ]
 
 

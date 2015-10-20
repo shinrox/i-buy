@@ -7,6 +7,52 @@
       margin: 10px 15px;
       height: 350px;
       display: inline-block;
+
+      a.unavailable {
+        color: map-get($colors, gray);
+      }
+    }
+  }
+}
+
+.categories-filter {
+  width: 100%;
+  margin-bottom: 30px;
+  border-bottom: 1px solid map-get($colors, primary);
+
+
+  ul {
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+
+    li {
+      line-height: 50px;
+      display: block;
+      float: left;
+      width: 25%;
+      padding: 0;
+      margin: 0;
+      
+      a {
+        display: block;
+      }
+    }
+
+    li:hover {
+      background-color: map-get($colors, primary-light);
+      a {
+        color: map-get($text-colors, light);
+      }
+    }
+
+    li.active {
+      background-color: map-get($colors, primary);
+      a {
+        color: map-get($text-colors, light);
+      }
     }
   }
 }

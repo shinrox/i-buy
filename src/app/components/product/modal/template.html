@@ -9,6 +9,12 @@
   <div>
     <p>Informações do produto</p>
     <p class='product-info' ng-bind='ctrl.product.about'></p>
-    <p>Preço <span ng-bind='ctrl.product.price | currency: "R$"'></span></p>
+    <p>Preço: <span ng-bind='ctrl.product.price | currency: "R$"'></span></p>
+    <p ng-if='ctrl.hasProduct()'>
+      <span ng-bind='ctrl.availableCount()'></span> em estoque
+    </p>
+    <p ng-if='!ctrl.hasProduct()'>
+      Produto esgotado
+    </p>
   </div>
 </div>

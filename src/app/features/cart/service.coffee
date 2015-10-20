@@ -1,5 +1,5 @@
 angular.module 'iBuy.services'
-.service 'CartService', (UserService, ShoppingsService)->
+.service 'CartService', (UserService, ShoppingsService, CollectionsService)->
 
   service =
     calcTotal: ->
@@ -34,13 +34,13 @@ angular.module 'iBuy.services'
         angular.extend user.cart, UserService.newCart()
 
       exist = user.cart.products[product._id]
-
       if exist?
         exist.count += quantity
       else
         product.count = quantity
         user.cart.products[product._id] = product
 
+      CollectionsService.products.sell(product, quantity)
       service.updateCart()
 
     remove: (product, quantity = 1)->
@@ -53,6 +53,7 @@ angular.module 'iBuy.services'
         if exist.count <= 0
           delete user.cart.products[product._id]
 
+      CollectionsService.products.retrieve(product, quantity)
       service.updateCart()
 
     load: ->

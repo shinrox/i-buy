@@ -14,7 +14,7 @@ angular.module 'iBuy'
     .state "home",
       url         : "/"
       resolve:
-        categories: ['CategoriesService', (CategoriesService)->
+        categories: ['CategoriesService', (CategoriesService, CollectionsService)->
           CategoriesService.all()
         ]
       views:

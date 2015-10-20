@@ -6,6 +6,8 @@
 
 $colors: (
   primary: #01579B,
+  primary-light: lighten(#01579B, 20%),
+  gray: #B6B6B6,
   secondary: #FFFFFF,
   third: #F1F0F1,
   border: #F1F1F1,

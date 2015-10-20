@@ -1,15 +1,17 @@
 angular.module 'iBuy.controllers'
-.controller 'CartController', ($state, ShoppingsService, CartService, UserService, $uibModal, sAlert)->
+.controller 'CartController', ($state, ShoppingsService, CartService, UserService, $uibModal, sAlert, CollectionsService)->
   ctrl = @
 
 
   ctrl.currentUser = UserService.currentUser()
 
+  ctrl.productAvailable = (product)->
+    return CollectionsService.products.available(product) > 0
+
 
   ctrl.actions = 
     finish: ->
       if ctrl.currentUser.login isnt 'anonymous'
-        console.log 'finish'
         CartService.updateStatus('WAITING')
       else
         ctrl.actions.openLogin()

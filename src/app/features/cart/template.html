@@ -33,6 +33,7 @@
         <span class='count' ng-bind='product.count'></span>
         <button 
           ng-if='ctrl.currentUser.cart.status != "PAID"'
+          ng-disabled='!ctrl.productAvailable(product)'
           class='btn pull-right btn-default icon' ng-click='ctrl.actions.add(product, 1)'>+</button>
       </span>
 

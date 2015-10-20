@@ -1,11 +1,11 @@
 angular.module 'iBuy'
-.controller 'ProductsController', (products, alphanumSort, ProductsService, CartService, UserService)->
+.controller 'ProductsController', ($stateParams, products, ProductsService, CartService, UserService, categories)->
   ctrl = @
   Service = ProductsService
 
   angular.extend ctrl, {
-    products: products.data.sort (a, b)->
-      return alphanumSort(a.name, b.name)
+    categories: categories
+    products: products
   }
 
   # for product in ctrl.products
@@ -18,5 +18,6 @@ angular.module 'iBuy'
 
   ctrl.addToCart = (product)->
     CartService.add(product)
+    ctrl.products = ProductsService.get($stateParams.category)
 
   return @
