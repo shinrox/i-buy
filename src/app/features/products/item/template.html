@@ -1,0 +1,25 @@
+<div class="products-view view" >
+  <h3 class='title' ng-bind='ctrl.product.name'></h3>
+  <div product-preview product='ctrl.product'></div>
+  <div class='info'>
+    <p class='info-label'>Informações do produto</p>
+    <p class='product-info' ng-bind='ctrl.product.about'></p>
+    <p><span class='info-label'>Preço:</span> <span ng-bind='ctrl.product.price | currency: "R$"'></span></p>
+    <p ng-if='ctrl.hasProduct()'>
+      <span ng-bind='ctrl.availableCount()'></span> em estoque
+    </p>
+    <p ng-if='!ctrl.hasProduct()'>
+      Produto esgotado
+    </p>
+
+    <div class="cart-info">
+      <p>
+        <span ng-bind='ctrl.currentUser.cart.products[ctrl.product._id].count || 0'></span> no carrinho
+      </p>
+
+      <button ng-if='ctrl.hasProduct()' class='btn btn-primary' ng-click='ctrl.addToCart(ctrl.product)'>+ Adicionar ao carrinho</button>
+    </div>
+
+
+  </div>
+</div>

@@ -1,10 +1,10 @@
 
 <div class="sidebar">
   <div class="btn-group-vertical">
-    <button 
-      ng-repeat='filter in ctrl.filters' 
+    <button
+      ng-repeat='filter in ctrl.filters'
       ng-click='ctrl.actions.filterBy(filter)'
-      type="button" 
+      type="button"
       class="btn btn-default"
       ng-class='{active: (ctrl.currentFilter == filter)}'
       ng-bind='filter.name'></button>
@@ -26,21 +26,21 @@
     </li>
 
     <li ng-if='ctrl.currentShoppings.length > 0' class='header row'>
-      <span class='info quantity col-md-2'>Qtd.</span>
-      <span class='info total col-md-4'>Total</span>
-      <span 
-        class='info status col-md-3'>Status</span>
-      <span class='info actions col-md-3'>Ações</span>
+      <span class='info quantity col-xs-2 col-sm-2 col-md-2 col-lg-2'>Qtd.</span>
+      <span class='info total col-xs-4 col-sm-4 col-md-4 col-lg-4'>Total</span>
+      <span
+        class='info status col-xs-3 col-sm-3 col-md-3 col-lg-3'>Status</span>
+      <span class='info actions col-xs-3 col-sm-3 col-md-3 col-lg-3'>Ações</span>
     </li>
 
     <li class='row' ng-repeat="shopping in ctrl.currentShoppings">
-      <span class='info quantity col-md-2' ng-bind='shopping.productsCount'></span>
-      <span class='info total col-md-4' ng-bind='shopping.currentTotal | currency:"R$"'></span>
-      <span 
-        class='info status col-md-3' ng-bind='ctrl.status[shopping.status]'></span>
+      <span class='info quantity col-xs-2 col-sm-2 col-md-2 col-lg-2' ng-bind='shopping.productsCount'></span>
+      <span class='info total col-xs-4 col-sm-4 col-md-4 col-lg-4' ng-bind='shopping.currentTotal | currency:"R$"'></span>
+      <span
+        class='info status col-xs-3 col-sm-3 col-md-3 col-lg-3' ng-bind='ctrl.status[shopping.status]'></span>
 
-      <span class='info actions col-md-3'>
-        <span 
+      <span class='info actions col-xs-3 col-sm-3 col-md-3 col-lg-3'>
+        <span
           class='action glyphicon glyphicon-trash'
           ng-click='ctrl.actions.remove(shopping)'
           ng-if="shopping.status != 'PAID'">
@@ -49,7 +49,7 @@
         <span class='action glyphicon glyphicon-eye-open'
           ui-sref='cart({id: shopping._id})'>
         </span>
-        
+
         <span class='action glyphicon glyphicon-usd'
           ng-click='ctrl.actions.pay(shopping)'
           ng-if="shopping.status == 'WAITING'">

@@ -18,14 +18,11 @@
     padding-top: 20px;
 
     li {
-      height: 30px;
       display: block;
       line-height: 30px;
       overflow: hidden;
 
       &.header {
-        clear: both;
-        height: 40px;
         line-height: 40px;
         border-bottom: 2px solid map-get($colors, border);
         margin-bottom: 5px;
@@ -37,7 +34,6 @@
 
       .info {
         display: inline-block;
-        width: 19%;
         overflow: hidden;
         text-overflow: ellipsis;
         padding: 0 5px;

@@ -13,7 +13,7 @@ angular.module 'iBuy'
   $stateProvider
     .state "products",
       url         : "/products/:category"
-      templateUrl : "#{path}/template.html"
+      templateUrl : "#{path}/list/template.html"
       controller  : "ProductsController as ctrl"
       resolve:
         products: ['$stateParams', 'ProductsService', ($stateParams, ProductsService)->

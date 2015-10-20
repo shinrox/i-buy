@@ -1,6 +1,6 @@
-<div id="header" 
-  class="light-text" 
-  role="navigation" 
+<div id="header"
+  class="light-text"
+  role="navigation"
   ng-class="ctrl.headerClass">
 
   <div class="logo-wrapper pull-left" title='iBuy'>
@@ -8,13 +8,13 @@
       <span class="logo"></span>
     </a>
   </div>
-  
+
   <div class='user pull-right' >
     <div class="user-wrapper" ng-if='ctrl.UserService.logged'>
       <span ng-bind='ctrl.currentUser.name'></span>
       &nbsp;|&nbsp;
-      <a 
-        class='light-text' 
+      <a
+        class='light-text'
         ng-click='ctrl.actions.logout()'
         title='Sair'>
         Sair
@@ -22,7 +22,7 @@
     </div>
 
     <div class="user-wrapper" ng-if='!ctrl.UserService.logged'>
-      <a 
+      <a
         ng-click='ctrl.actions.openLogin()'
         class='light-text'
         title='Login'>
@@ -38,7 +38,7 @@
 
     <div class="cart-icon">
       <span class='glyphicon glyphicon-shopping-cart'></span>
-      <span 
+      <span
         class="badge"
         ng-bind='ctrl.currentUser.cart.productsCount'>
       </span>
@@ -47,15 +47,15 @@
 
   </div>
 
-  <div 
-    class="pull-right link" 
+  <div
+    class="pull-right link"
     ng-if='ctrl.UserService.logged'
     title='Minhas compras'
     ui-sref-active='active'>
     <a class='light-text no-decoration'  ui-sref="shoppings">Minhas compras</a>
   </div>
 
-  <div 
+  <div
     class="pull-right link"
     title='Produtos'
     ui-sref-active='active'>
@@ -63,5 +63,5 @@
   </div>
 
 
-  
+
 </div>

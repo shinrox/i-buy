@@ -8,13 +8,11 @@ angular.module 'iBuy'
     products: products
   }
 
-  # for product in ctrl.products
-  #   Service.remove product._id
-  
+
   ctrl.currentUser = UserService.current
 
   if ctrl.currentUser.cart.status isnt 'CREATED'
-    angular.extend ctrl.currentUser.cart, UserService.newCart() 
+    angular.extend ctrl.currentUser.cart, UserService.newCart()
 
   ctrl.addToCart = (product)->
     CartService.add(product)

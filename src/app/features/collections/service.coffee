@@ -5,13 +5,13 @@ angular.module 'iBuy.services'
 
   count = 1
 
-  models = 
+  models =
     products: (category)->
       products = []
-      about = """ 
+      about = """
         Officia et cupidatat consequat reprehenderit do qui velit
-         anim magna sint minim qui ullamco. 
-         Ex amet cupidatat non deserunt. 
+         anim magna sint minim qui ullamco.
+         Ex amet cupidatat non deserunt.
          Lorem nulla irure ex do amet irure.
       """
       for id in [1..10]
@@ -39,7 +39,7 @@ angular.module 'iBuy.services'
         name: name
         type: type
 
-  return service = 
+  return service =
     create: ->
       savedCat = simpleStorage.get('CategoriesCollection')
 
@@ -68,23 +68,31 @@ angular.module 'iBuy.services'
 
       getByCategory: (category)->
         all = service.products.all()
-        if category is 'all'
+        if category is '' or category is 'all'
           return all
         filtered = filter(all, (item)->
           return item.category.type is category
         )
         return filtered
 
+      getById: (id)->
+        all = service.products.all()
+        filtered = filter(all, {_id: id}, true)[0]
+        return filtered
+
+
       sell: (product, count)->
         products = service.products.all()
-        item = filter(products, {_id: product._id}, true)[0]
+        _idx = _.findIndex(products, {_id: product._id})
+        item = products[_idx]
         if item?
           item.sold += count
           simpleStorage.set('ProductsCollection', products)
 
       retrieve: (product, count)->
         products = service.products.all()
-        item = filter(products, {_id: product._id}, true)[0]
+        _idx = _.findIndex(products, {_id: product._id})
+        item = products[_idx]
         if item?
           item.sold -= count
           simpleStorage.set('ProductsCollection', products)
@@ -97,7 +105,7 @@ angular.module 'iBuy.services'
 
 
 
-    categories: 
+    categories:
       all: ->
         return simpleStorage.get('CategoriesCollection')
 

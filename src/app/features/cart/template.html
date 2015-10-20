@@ -3,47 +3,47 @@
   <span ng-if='ctrl.currentUser.cart.productsCount > 0'> | Pedido #{{ctrl.currentUser.cart._id}}</span>
   </h3>
 
-  <ul class='text-left list' >
-    <li class='text-center' ng-if='!ctrl.currentUser.cart.productsCount > 0'>
+  <ul class='text-left list container-fluid' >
+    <li class='text-center row' ng-if='!ctrl.currentUser.cart.productsCount > 0'>
       Você não tem nenhum item no carrinho, <a ui-sref="products({category: 'all'})">clique aqui</a> e comece a adicionar produtos.
     </li>
 
-    <li ng-if='ctrl.currentUser.cart.productsCount > 0' class='header'>
-      <span class='info name'>Produto</span>
-      <span class='info quantity text-center'>Qtd.</span>
-      <span class='info price text-center'>Preço Und.</span>
-      <span class='info total text-center'>Total</span>
-      <span class='info actions text-center' 
+    <li ng-if='ctrl.currentUser.cart.productsCount > 0' class='header row'>
+      <span class='info name col-xs-3 col-sm-3 col-md-3 col-lg-3'>Produto</span>
+      <span class='info quantity text-center col-xs-3 col-sm-3 col-md-3 col-lg-3'>Qtd.</span>
+      <span class='info price text-center col-xs-2 col-sm-2 col-md-2 col-lg-2'>Preço Und.</span>
+      <span class='info total text-center col-xs-2 col-sm-2 col-md-2 col-lg-2'>Total</span>
+      <span class='info actions text-center col-xs-2 col-sm-2 col-md-2 col-lg-2'
         ng-if='ctrl.currentUser.cart.status != "PAID"'>
         Ações
       </span>
     </li>
 
     <li ng-if='ctrl.currentUser.cart.productsCount > 0'
-      ng-repeat="(key, product) in ctrl.currentUser.cart.products">
-      <a 
-        class='action info name'
-        ng-click='ctrl.actions.productZoom(product)'
+      ng-repeat="(key, product) in ctrl.currentUser.cart.products" class='row'>
+      <a
+        class='action info name col-xs-3 col-sm-3 col-md-3 col-lg-3'
+        ui-sref='product({id: product._id})'
         ng-bind='product.name'>
       </a>
-      
-      <span class='info quantity text-center'>
+
+      <span class='info quantity text-center col-xs-3 col-sm-3 col-md-3 col-lg-3'>
         <button class='pull-left btn btn-default icon' ng-click='ctrl.actions.remove(product, 1)'
         ng-if='ctrl.currentUser.cart.status != "PAID"'>-</button>
         <span class='count' ng-bind='product.count'></span>
-        <button 
+        <button
           ng-if='ctrl.currentUser.cart.status != "PAID"'
           ng-disabled='!ctrl.productAvailable(product)'
           class='btn pull-right btn-default icon' ng-click='ctrl.actions.add(product, 1)'>+</button>
       </span>
 
-      <span class='info price text-center' ng-bind='product.price | currency:"R$"'></span>
-      
-      <span class='info total text-center' ng-bind='(product.price * product.count) | currency:"R$"'></span>
+      <span class='info price text-center col-xs-2 col-sm-2 col-md-2 col-lg-2' ng-bind='product.price | currency:"R$"'></span>
 
-      <span class='info actions text-center'
+      <span class='info total text-center col-xs-2 col-sm-2 col-md-2 col-lg-2' ng-bind='(product.price * product.count) | currency:"R$"'></span>
+
+      <span class='info actions text-center col-xs-2 col-sm-2 col-md-2 col-lg-2'
       ng-if='ctrl.currentUser.cart.status != "PAID"'>
-        <span 
+        <span
           class='action'
           ng-click='ctrl.actions.remove(product, product.count)'>
           Remover tudo
@@ -52,37 +52,37 @@
       </span>
     </li>
   </ul>
-  
+
   <div class="row" ng-if='ctrl.currentUser.cart.productsCount > 0'>
-    <button 
+    <button
       class="btn btn-success"
       ng-if='ctrl.currentUser.cart.status == "CREATED"'
       ng-click="ctrl.actions.finish()">
       Finalizar compra
     </button>
 
-    <button 
+    <button
       class="btn btn-success"
       ng-if='ctrl.currentUser.cart.status == "WAITING"'
       ng-click="ctrl.actions.pay()">
       Efetuar pagamento
     </button>
 
-    <button 
+    <button
       class="btn btn-success"
       ng-if='ctrl.currentUser.cart.status == "PAID"'
       ui-sref='shoppings'>
       Minhas compras
     </button>
 
-    <button 
+    <button
       ng-if='ctrl.currentUser.cart.status != "PAID"'
       class="btn btn-primary"
       ng-click='ctrl.actions.open()'>
       Adicionar mais produtos
     </button>
 
-    <button 
+    <button
       ng-if='ctrl.currentUser.cart.status != "PAID"'
       class="btn btn-danger"
       ng-click="ctrl.actions.removeShopping()">

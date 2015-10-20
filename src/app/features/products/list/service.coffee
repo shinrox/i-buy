@@ -5,7 +5,10 @@ angular.module 'iBuy.services'
   return service =
     all: ()->
       CollectionsService.products.all()
-    
+
     get: (category)->
       CollectionsService.products.getByCategory(category)
+
+    getById: (id)->
+      CollectionsService.products.getById(id)
 

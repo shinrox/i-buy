@@ -1,0 +1,32 @@
+.products-view {
+  width: 95%;
+  margin: 0 auto;
+
+  .title {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid map-get($colors, border);
+  }
+
+  .preview {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .info {
+    padding: 20px;
+
+    p {
+      font-weight: 300;
+    }
+
+    .info-label {
+      font-weight: 400;
+    }
+  }
+}
